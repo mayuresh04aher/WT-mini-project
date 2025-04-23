@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Online Food Delivery</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Navigation Section Start -->
+    <header class="navbar">
+        <nav id="site-top-nav" class="navbar-menu navbar-fixed-top">
+            <div class="container">
+                <!-- logo -->
+                <div class="logo">
+                    <a href="index.html" title="Logo">
+                        <img src="img/logo.png" alt="Logo" class="img-responsive">
+                    </a>
+                </div>
+                <!-- Main Menu -->
+                <div class="menu text-right">
+                    <ul>
+                        <li><a class="hvr-underline-from-center" href="index.html">Home</a></li>
+                        <li><a class="hvr-underline-from-center" href="categories.html">Categories</a></li>
+                        <li><a class="hvr-underline-from-center" href="foods.html">Foods</a></li>
+                        <li><a class="hvr-underline-from-center" href="order.html">Order</a></li>
+                        <li><a class="hvr-underline-from-center" href="contact.html">Contact</a></li>
+                        <li><a class="hvr-underline-from-center" href="login.html">Login</a></li>
+                        <li>
+                            <a id="shopping-cart" class="shopping-cart">
+                                <i class="fa fa-cart-arrow-down"></i>
+                                <span class="badge">4</span>
+                            </a>
+                            <div id="cart-content" class="cart-content">
+                                <h3 class="text-center">Shopping Cart</h3>
+                                <table class="cart-table" border="0">
+                                    <tr>
+                                        <th>Food</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="img/food/p1.jpg" alt="Food"></td>
+                                        <td>Pizza</td>
+                                        <td>$ 8.00</td>
+                                        <td>1</td>
+                                        <td>$ 8.00</td>
+                                        <td><a href="#" class="btn-delete">&times;</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="img/food/s1.jpg" alt="Food"></td>
+                                        <td>Sandwich</td>
+                                        <td>$ 8.00</td>
+                                        <td>1</td>
+                                        <td>$ 8.00</td>
+                                        <td><a href="#" class="btn-delete">&times;</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="img/food/b1.jpg" alt="Food"></td>
+                                        <td>Burder</td>
+                                        <td>$ 8.00</td>
+                                        <td>1</td>
+                                        <td>$ 8.00</td>
+                                        <td><a href="#" class="btn-delete">&times;</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="4">Total</th>
+                                        <th>$24.00$</th>
+                                        <th></th>
+                                    </tr>
+                                </table>
+                                <a href="order.html" class="btn-primary">Confirm Order</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Navigation Section End -->
+
+    <section class="signup">
+        <div class="container">
+            <h2 class="text-center">Sign Up</h2>
+            <div class="heading-border"></div>
+
+            <form id="signup-form" class="form">
+                <fieldset>
+                    <legend>Create an Account</legend>
+
+                    <p class="label">Full Name</p>
+                    <input type="text" id="name" placeholder="Enter your full name..." required>
+
+                    <p class="label">Mobile Number</p>
+                    <input type="text" id="mobile" placeholder="Enter your mobile number..." required>
+
+                    <p class="label">Email</p>
+                    <input type="email" id="email" placeholder="Enter your email..." required>
+
+                    <p class="label">Password</p>
+                    <input type="password" id="password" placeholder="Enter your password..." required>
+
+                    <p class="label">Confirm Password</p>
+                    <input type="password" id="confirm-password" placeholder="Confirm your password..." required>
+
+                    <input type="submit" value="Sign Up" class="btn-primary">
+                </fieldset>
+            </form>
+
+            <p class="text-center">Already have an account? <a href="login.html" id="login-link">Login</a></p>
+        </div>
+    </section>
+
+    <!-- JavaScript for Form Validation and Redirection -->
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            let name = document.getElementById('name').value.trim();
+            let mobile = document.getElementById('mobile').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let password = document.getElementById('password').value.trim();
+            let confirmPassword = document.getElementById('confirm-password').value.trim();
+
+            let namePattern = /^[A-Za-z\s]+$/;
+            if (!namePattern.test(name)) {
+                alert("Please enter a valid full name (only letters and spaces).");
+                return;
+            }
+
+            let mobilePattern = /^[0-9]{10}$/;
+            if (!mobilePattern.test(mobile)) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return;
+            }
+
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            alert("Sign up successful! Redirecting to login page...");
+            window.location.href = "login.html";
+        });
+
+        document.getElementById('login-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "categories.html";
+        });
+    </script>
+</body>
+
+</html>
